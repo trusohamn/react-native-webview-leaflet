@@ -823,6 +823,18 @@
   dependencies:
     "@types/geojson" "*"
 
+"@types/lodash.isequal@^4.5.5":
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/@types/lodash.isequal/-/lodash.isequal-4.5.5.tgz#4fed1b1b00bef79e305de0352d797e9bb816c8ff"
+  integrity sha512-4IKbinG7MGP131wRfceK6W4E/Qt3qssEFLF30LnJbjYiSfHGGRU/Io8YxXrZX109ir+iDETC8hw8QsDijukUVg==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.14.165"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.165.tgz#74d55d947452e2de0742bad65270433b63a8c30f"
+  integrity sha512-tjSSOTHhI5mCHTy/OOXYIhi2Wt1qcbHmuXD1Ha7q70CgI/I71afO4XtLb/cVexki1oVYchpul/TOuu3Arcdxrg==
+
 "@types/node@^13.1.6":
   version "13.1.6"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.6.tgz#076028d0b0400be8105b89a0a55550c86684ffec"
@@ -844,6 +856,13 @@
   integrity sha512-kDZ2Ky6FQxXRODBEFlq25Lu80Nc7UsDSHCmHTa22UQn2RIJxe3O443K0vzOrFyzWPpVEOmqBpfDkX9QSTBoFxg==
   dependencies:
     "@types/leaflet" "*"
+    "@types/react" "*"
+
+"@types/react-native@^0.63.32":
+  version "0.63.32"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.32.tgz#2f6785947c9e1bb634bffd509007c7e73af823b6"
+  integrity sha512-q9JyN8eoCwLcPPyF7ldzWXAo1SOFIsh97b2WOZJVraozkvpTDcA9SZMdHxNhjP9M9KdKY0GWKB2B0pjew8VT3w==
+  dependencies:
     "@types/react" "*"
 
 "@types/react@*":
@@ -6429,10 +6448,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.6.4:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.4.tgz#b18752bb3792bc1a0281335f7f6ebf1bbfc5b91d"
-  integrity sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg==
+typescript@~3.9.5:
+  version "3.9.7"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
+  integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
 
 unc-path-regex@^0.1.2:
   version "0.1.2"

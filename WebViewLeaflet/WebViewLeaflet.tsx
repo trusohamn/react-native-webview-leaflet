@@ -11,13 +11,13 @@ import {
   MapLayer,
   MapShape,
   OwnPositionMarker,
-  OWN_POSTION_MARKER_ID
+  OWN_POSTION_MARKER_ID,
 } from "./models";
 import { ActivityOverlay } from "./ActivityOverlay";
 import * as FileSystem from "expo-file-system";
 import { LatLng } from "react-leaflet";
 import isEqual from "lodash.isequal";
-// @ts-ignore node types
+// tslint:disable-next-line: no-var-requires
 const INDEX_FILE_PATH = require(`./assets/index.html`);
 
 export interface WebViewLeafletProps {
@@ -38,9 +38,9 @@ export interface WebViewLeafletProps {
 
 interface State {
   debugMessages: string[];
-  mapCurrentCenterPosition: LatLng;
-  webviewContent: string;
-  isLoading: boolean;
+  mapCurrentCenterPosition: LatLng | null;
+  webviewContent: string | null;
+  isLoading: boolean | null;
 }
 
 class WebViewLeaflet extends React.Component<WebViewLeafletProps, State> {
@@ -49,21 +49,22 @@ class WebViewLeaflet extends React.Component<WebViewLeafletProps, State> {
     backgroundColor: "#FAEBD7",
     doDisplayCenteringButton: true,
     doShowDebugMessages: false,
-    loadingIndicator: () => {
-      return <ActivityOverlay />;
-    },
+    loadingIndicator: () => <ActivityOverlay />,
+    // tslint:disable-next-line: no-empty
     onError: (syntheticEvent: any) => {},
+    // tslint:disable-next-line: no-empty
     onLoadEnd: () => {},
-    onLoadStart: () => {}
+    // tslint:disable-next-line: no-empty
+    onLoadStart: () => {},
   };
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       debugMessages: [],
       isLoading: null,
       mapCurrentCenterPosition: null,
-      webviewContent: null
+      webviewContent: null,
     };
     this.webViewRef = null;
   }
@@ -74,15 +75,15 @@ class WebViewLeaflet extends React.Component<WebViewLeafletProps, State> {
 
   private loadHTMLFile = async () => {
     try {
-      let asset: Asset = await AssetUtils.resolveAsync(INDEX_FILE_PATH);
-      let fileString: string = await FileSystem.readAsStringAsync(
-        asset.localUri
+      const asset: Asset = await AssetUtils.resolveAsync(INDEX_FILE_PATH);
+      const fileString = await FileSystem.readAsStringAsync(
+        asset.localUri || " "
       );
 
       this.setState({ webviewContent: fileString });
     } catch (error) {
-      console.warn(error);
-      console.warn("Unable to resolve index file");
+      // tslint:disable-next-line: no-console
+      console.warn(error, "Unable to resolve index file");
     }
   };
 
@@ -94,7 +95,7 @@ class WebViewLeaflet extends React.Component<WebViewLeafletProps, State> {
       mapLayers,
       mapShapes,
       ownPositionMarker,
-      zoom
+      zoom,
     } = this.props;
 
     if (!prevState.webviewContent && webviewContent) {
@@ -124,12 +125,15 @@ class WebViewLeaflet extends React.Component<WebViewLeafletProps, State> {
     const { mapCurrentCenterPosition } = this.state;
     const { mapCenterPosition } = this.props;
 
-    if (!isEqual(mapCenterPosition, mapCurrentCenterPosition)) {
+    if (
+      !isEqual(mapCenterPosition, mapCurrentCenterPosition) &&
+      mapCenterPosition
+    ) {
       this.setState({
-        mapCurrentCenterPosition: mapCenterPosition
+        mapCurrentCenterPosition: mapCenterPosition,
       });
       this.sendMessage({
-        mapCenterPosition
+        mapCenterPosition,
       });
     }
   };
@@ -138,14 +142,14 @@ class WebViewLeaflet extends React.Component<WebViewLeafletProps, State> {
   private handleMessage = (data: string) => {
     const { onMessageReceived } = this.props;
 
-    let message: WebviewLeafletMessage = JSON.parse(data);
+    const message: WebviewLeafletMessage = JSON.parse(data);
     this.updateDebugMessages(`received: ${JSON.stringify(message)}`);
     if (message.msg === WebViewLeafletEvents.MAP_READY) {
       this.sendStartupMessage();
     }
     if (message.event === WebViewLeafletEvents.ON_MOVE_END) {
       this.setState({
-        mapCurrentCenterPosition: message.payload.mapCenterPosition
+        mapCurrentCenterPosition: message?.payload?.mapCenterPosition || [0, 0],
       });
     }
     onMessageReceived(message);
@@ -162,14 +166,14 @@ class WebViewLeaflet extends React.Component<WebViewLeafletProps, State> {
 
   // Send a startup message with initalizing values to the map
   private sendStartupMessage = () => {
-    let startupMessage: MapStartupMessage = {};
+    const startupMessage: MapStartupMessage = {};
     const {
       mapLayers,
       mapMarkers,
       mapShapes,
-      mapCenterPosition,
+      mapCenterPosition = [],
       ownPositionMarker,
-      zoom = 7
+      zoom = 7,
     } = this.props;
     if (mapLayers) {
       startupMessage.mapLayers = mapLayers;
@@ -186,7 +190,7 @@ class WebViewLeaflet extends React.Component<WebViewLeafletProps, State> {
     if (ownPositionMarker) {
       startupMessage.ownPositionMarker = {
         ...ownPositionMarker,
-        id: OWN_POSTION_MARKER_ID
+        id: OWN_POSTION_MARKER_ID,
       };
     }
 
@@ -203,29 +207,32 @@ class WebViewLeaflet extends React.Component<WebViewLeafletProps, State> {
   // Add a new debug message to the debug message array
   private updateDebugMessages = (debugMessage: string) => {
     this.setState({
-      debugMessages: [...this.state.debugMessages, debugMessage]
+      debugMessages: [...this.state.debugMessages, debugMessage],
     });
   };
 
-  private onError = (syntheticEvent: any) => {
-    this.props.onError(syntheticEvent);
+  private onError = (syntheticEvent = {}) => {
+    const { onError = () => {} } = this.props;
+    onError(syntheticEvent);
   };
   private onLoadEnd = () => {
     this.setState({ isLoading: false });
-    this.props.onLoadEnd();
+    const { onLoadEnd = () => {} } = this.props;
+    onLoadEnd();
   };
   private onLoadStart = () => {
     this.setState({ isLoading: true });
-    this.props.onLoadStart();
+    const { onLoadStart = () => {} } = this.props;
+    onLoadStart();
   };
 
   // Output rendered item to screen
   render() {
     const { debugMessages, webviewContent } = this.state;
     const {
-      backgroundColor,
-      doShowDebugMessages,
-      loadingIndicator
+      backgroundColor = "#FAEBD7",
+      doShowDebugMessages = false,
+      loadingIndicator = () => <ActivityOverlay />,
     } = this.props;
 
     if (webviewContent) {

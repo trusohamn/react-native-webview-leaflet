@@ -1,39 +1,39 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add FileSystem
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add @types/expo-asset-utils
 
 PATH: 
-  C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\ProgramData\chocolatey\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Program Files\nodejs\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Microsoft VS Code\bin;C:\Users\regin\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\regin\Downloads\platform-tools;C:\Users\regin\AppData\Local\Microsoft\WindowsApps;C:\Users\regin\AppData\Roaming\npm;C:\Users\regin\AppData\Local\Yarn\bin
+  /home/marta/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/marta/Android/Sdk/emulator:/home/marta/Android/Sdk/tools:/home/marta/Android/Sdk/tools/bin:/home/marta/Android/Sdk/platform-tools
 
 Yarn version: 
-  1.21.1
+  1.22.5
 
 Node version: 
-  12.8.0
+  13.14.0
 
 Platform: 
-  win32 x64
+  linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/FileSystem: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66056:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140665:22)
-      at Request.emit (events.js:203:13)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141637:10)
-      at Request.emit (events.js:203:13)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141559:12)
-      at Object.onceWrapper (events.js:291:20)
-      at IncomingMessage.emit (events.js:208:15)
-      at endReadableNT (_stream_readable.js:1168:12)
-      at processTicksAndRejections (internal/process/task_queues.js:77:11)
+  Error: https://registry.yarnpkg.com/@types%2fexpo-asset-utils: Not found
+      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66988:18)
+      at Request.self.callback (/usr/share/yarn/lib/cli.js:140749:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141721:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141643:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1201:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
   {
-    "name": "react-native-webview-leaflet",
+    "name": "@trusohamn/react-native-webview-leaflet",
     "version": "5.0.2",
     "description": "A React Native component that uses a React Native WebView to provide a Leaflet map.",
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/reggie3/react-native-webview-leaflet.git"
+      "url": "https://github.com/trusohamn/react-native-webview-leaflet"
     },
     "keywords": [
       "react-native",
@@ -41,29 +41,35 @@ npm manifest:
       "expo",
       "webview"
     ],
-    "main": "index.ts",
-    "typings": "index.d.ts",
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts",
     "scripts": {
+      "build": "tsc --project ./tsconfig.json",
       "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
+      "@types/lodash.isequal": "^4.5.5",
       "expo-asset": "^7.0.0",
       "expo-asset-utils": "^1.2.0",
+      "expo-file-system": "^8.0.0",
       "leaflet": "^1.5.1",
+      "lodash.isequal": "^4.5.0",
       "react-dom": "^16.10.2",
       "react-leaflet": "^2.6.1",
       "react-native-webview": "^8.0.3"
     },
     "peerDependencies": {
       "react": "^16.9.0",
+      "react-leaflet": "^2.6.1",
       "react-native": "^0.61.2"
     },
     "devDependencies": {
       "@babel/core": "^7.0.0-0",
       "@babel/plugin-proposal-class-properties": "^7.5.5",
       "@babel/preset-react": "^7.6.3",
+      "@types/node": "^13.1.6",
       "@types/react-leaflet": "^2.4.0",
       "babel-plugin-transform-class-properties": "^6.24.1",
       "gulp": "4",
@@ -903,6 +909,11 @@ Lockfile:
     dependencies:
       "@types/geojson" "*"
   
+  "@types/node@^13.1.6":
+    version "13.1.6"
+    resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.6.tgz#076028d0b0400be8105b89a0a55550c86684ffec"
+    integrity sha512-Jg1F+bmxcpENHP23sVKkNuU3uaxPnsBMW0cLjleiikFKomJQbsn0Cqk2yDvQArqzZN6ABfBkZ0To7pQ8sLdWDg==
+  
   "@types/prop-types@*":
     version "15.7.3"
     resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
@@ -953,9 +964,9 @@ Lockfile:
     integrity sha512-7evsyfH1cLOCdAzZAd43Cic04yKydNx0cF+7tiA19p1XnLLPU4dpCQOqpjqwokFe//vS0QqfqqjCS2JkiIs0cA==
   
   acorn@^5.0.0:
-    version "5.7.3"
-    resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
-    integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
+    version "5.7.4"
+    resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
+    integrity sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==
   
   acorn@^6.0.1, acorn@^6.0.4:
     version "6.3.0"
@@ -2672,6 +2683,13 @@ Lockfile:
       path-browserify "^1.0.0"
       url-parse "^1.4.4"
   
+  expo-file-system@^8.0.0:
+    version "8.0.0"
+    resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-8.0.0.tgz#60b90c8a375308dc85922592a77531a8e0cde6f7"
+    integrity sha512-mi84jt3EHVUfxu5eGOikNuRDi7+5daCFSP9LVgk5aQz8Oepo143vnH/+WE4lQEg+u8dB6EmmCWncyc2Fklxv7A==
+    dependencies:
+      uuid-js "^0.7.5"
+  
   extend-shallow@^2.0.1:
     version "2.0.1"
     resolved "https://registry.yarnpkg.com/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"
@@ -4014,6 +4032,11 @@ Lockfile:
     version "3.0.4"
     resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
     integrity sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U=
+  
+  lodash.isequal@^4.5.0:
+    version "4.5.0"
+    resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+    integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
   
   lodash.keys@^3.0.0:
     version "3.1.2"
@@ -5879,9 +5902,9 @@ Lockfile:
       statuses "~1.5.0"
   
   serialize-to-js@^3.0.0:
-    version "3.0.0"
-    resolved "https://registry.yarnpkg.com/serialize-to-js/-/serialize-to-js-3.0.0.tgz#1fd8736744819a4df29dc85e9d04a44a4984edc3"
-    integrity sha512-WdGgi0jGnWCQXph2p3vkxceDnTfvfyXfYxherQMRcZjSaJzMQdMBAW6i0nojsBKIZ3fFOztZKKVbbm05VbIdRA==
+    version "3.0.2"
+    resolved "https://registry.yarnpkg.com/serialize-to-js/-/serialize-to-js-3.0.2.tgz#d71834a18135aff742e516d3b2208f662a46a8ac"
+    integrity sha512-o5FqeMyxGx1wkp8p14q9QqGXh1JjXtIDYTr15N/B4ThM5ULqlpXdtOO84m950jFGvBkeRD1utW+WyNKvao2ybQ==
   
   serve-static@^1.12.4:
     version "1.14.1"
@@ -6673,6 +6696,11 @@ Lockfile:
     integrity sha512-HShAsny+zS2TZfaXxD9tYj4HQGlBezXZMZuM/S5PKLLoZkShZiGk9o5CzukI1LVHZvjdvZ2Sj1aW/Ndn2NB/HQ==
     dependencies:
       inherits "2.0.3"
+  
+  uuid-js@^0.7.5:
+    version "0.7.5"
+    resolved "https://registry.yarnpkg.com/uuid-js/-/uuid-js-0.7.5.tgz#6c886d02a53d2d40dcf25d91a170b4a7b25b94d0"
+    integrity sha1-bIhtAqU9LUDc8l2RoXC0p7JblNA=
   
   uuid@^3.3.2:
     version "3.3.3"
