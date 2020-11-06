@@ -1,6 +1,3 @@
-import React from "react";
-import { WebViewError } from "react-native-webview/lib/WebViewTypes";
-
 // Type definitions for react-native-webivew-leaflet
 // Project: react-native-webview-leaflet
 // Definitions by: Reginald Johnson https://
@@ -19,7 +16,7 @@ export as namespace ReactNativeWebViewLeaflet;
 
 export {
   default as WebViewLeaflet,
-  WebViewLeafletProps
+  WebViewLeafletProps,
 } from "./WebViewLeaflet";
 export {
   LatLng,
@@ -34,5 +31,5 @@ export {
   MapLayer,
   MapLayerType,
   MapShapeType,
-  WebviewLeafletMessage
+  WebviewLeafletMessage,
 } from "./models";

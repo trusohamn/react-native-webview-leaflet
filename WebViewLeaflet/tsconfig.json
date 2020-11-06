@@ -8,16 +8,14 @@
       "jsx": "react-native",
       "lib": ["dom", "esnext"],
       "moduleResolution": "node",
-      "noEmit": true,
+      "noEmit": false,
       "skipLibCheck": true,
       "resolveJsonModule": true,
       "strict": true,
+      "noImplicitAny": false
     },
+    "include":["./*"],
     "exclude": [
       "node_modules",
-      "**/__tests__/*",
-      "./node_modules",
-      "./node_modules/*",
-      "../../node_modules/*"
     ]
   }
