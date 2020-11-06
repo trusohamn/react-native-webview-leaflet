@@ -18,8 +18,9 @@
     "lib/**/*"
   ],
   "scripts": {
-    "build": "tsc --project ./tsconfig.json",
-    "prepare": "yarn build"
+    "build": "tsc --project ./tsconfig.json && yarn copy-assets",
+    "prepare": "yarn build",
+    "copy-assets": "cp -rv assets/ lib/assets/"
   },
   "author": "",
   "license": "ISC",
