@@ -14,7 +14,10 @@ const WebViewLeafletView = ({ backgroundColor, debugMessages, doShowDebugMessage
         if (!!component)
             setWebViewRef(component);
     }} javaScriptEnabled={true} onLoadEnd={onLoadEnd} onLoadStart={onLoadStart} onMessage={(event) => {
-        if (event && event.nativeEvent && event.nativeEvent.data) {
+        if (event &&
+            event.nativeEvent &&
+            event.nativeEvent.data &&
+            handleMessage) {
             handleMessage(event.nativeEvent.data);
         }
     }} domStorageEnabled={true} startInLoadingState={true} onError={onError} originWhitelist={["*"]} 

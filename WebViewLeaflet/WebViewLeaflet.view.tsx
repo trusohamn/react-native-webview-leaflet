@@ -52,7 +52,12 @@ const WebViewLeafletView = ({
           onLoadEnd={onLoadEnd}
           onLoadStart={onLoadStart}
           onMessage={(event) => {
-            if (event && event.nativeEvent && event.nativeEvent.data) {
+            if (
+              event &&
+              event.nativeEvent &&
+              event.nativeEvent.data &&
+              handleMessage
+            ) {
               handleMessage(event.nativeEvent.data);
             }
           }}
