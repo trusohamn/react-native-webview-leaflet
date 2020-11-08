@@ -20,7 +20,8 @@
   "scripts": {
     "build": "tsc --project ./tsconfig.json && yarn copy-assets",
     "prepare": "rm -rf lib && yarn build",
-    "copy-assets": "cp -rv assets/ lib/assets/"
+    "copy-assets": "cp -rv assets/ lib/assets/",
+    "pub": "npm publish --access public"
   },
   "author": "",
   "license": "ISC",
